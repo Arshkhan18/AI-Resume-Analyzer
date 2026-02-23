@@ -1,0 +1,79 @@
+\documentclass[a4paper,11pt]{article}
+
+% -------------------- Packages --------------------
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage[T1]{fontenc}
+
+% -------------------- Page Setup --------------------
+\geometry{left=1.4cm, top=0.8cm, right=1.2cm, bottom=1cm}
+\pagestyle{empty}
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% -------------------- Section Formatting --------------------
+\titleformat{\section}
+  {\vspace{-4pt}\scshape\raggedright\large\bfseries}
+  {}{0em}{}[\titlerule \vspace{-6pt}]
+
+\renewcommand{\labelitemi}{$\bullet$}
+
+% ==================== DOCUMENT START ====================
+\begin{document}
+
+% -------------------- HEADER --------------------
+% -------------------- HEADER --------------------
+\begin{center}
+    {\LARGE\bfseries {{NAME}}} \\[6pt]
+    {{PHONE}} \, | \,
+    \href{mailto:{{EMAIL}}}{{EMAIL}} \, | \,
+    \href{https://linkedin.com/in/{{LINKEDIN}}}{LinkedIn} \, | \,
+    \href{https://github.com/{{GITHUB}}}{GitHub}
+\end{center}
+\vspace{-2mm}
+
+% -------------------- EDUCATION --------------------
+\section{Education}
+\begin{tabularx}{\textwidth}{|>{\centering\arraybackslash}p{2.5cm}|X|>{\centering\arraybackslash}p{2cm}|}
+\hline
+\textbf{Year} & \textbf{Degree / Institute} & \textbf{CGPA/\%} \\
+\hline
+{{EDUCATION_ROWS}}
+\hline
+\end{tabularx}
+
+\vspace{3mm}
+
+% -------------------- PROJECTS --------------------
+\section{Projects}
+\begin{itemize}[leftmargin=*]
+{{PROJECTS_SECTION}}
+\end{itemize}
+
+% -------------------- SKILLS --------------------
+\section{Technical Skills}
+\begin{itemize}[leftmargin=*]
+\item \textbf{Programming:} {{PROGRAMMING_SKILLS}}
+\item \textbf{Web/Frameworks:} {{WEB_SKILLS}}
+\item \textbf{Databases:} {{DATABASE_SKILLS}}
+\item \textbf{Tools:} {{TOOLS}}
+\end{itemize}
+
+% -------------------- POSITIONS --------------------
+\section{Positions of Responsibility}
+\begin{itemize}[leftmargin=*]
+{{POSITIONS_SECTION}}
+\end{itemize}
+
+% -------------------- ACHIEVEMENTS --------------------
+\section{Achievements}
+\begin{itemize}[leftmargin=*]
+{{ACHIEVEMENTS_SECTION}}
+\end{itemize}
+
+\end{document}
