@@ -6,14 +6,17 @@ import authRoutes from "./routes/authRoutes.js";
 import protect  from "./middlewares/authMiddleware.js";
 import resumeRoutes from "./routes/resumeRoutes.js";
 import generatorRoutes from "./routes/generatorRoutes.js";
-
+import studyRoutes from "./routes/studyRoutes.js";
 
 dotenv.config();
 //connect to MongoDB
-console.log("Connecting to MongoDB...", process.env.MONGO_URI);
-mongoose.connect(process.env.MONGO_URI)
+
+mongoose.connect(process.env.MONGO_URI, {
+    serverSelectionTimeoutMS: 30000,   // wait up to 30s for Atlas to respond
+    retryWrites: true,
+})
     .then(() => console.log("MongoDB connected"))
-    .catch((err) => console.log(err));
+    .catch((err) => console.log("MongoDB connection error:", err.message));
 
 const app = express();
 //middleware
@@ -28,6 +31,7 @@ app.use("/api/auth", authRoutes);
 // });
 app.use("/api/resume", resumeRoutes);
 app.use("/api/generator", generatorRoutes);
+app.use("/api/study", studyRoutes);
 
 app.get("/", (req, res) => {
   res.send("Resume AI Backend Running");

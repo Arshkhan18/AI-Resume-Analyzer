@@ -3,24 +3,31 @@ import model from "../aiProvider.js";
 export const analyzeResume = async(resumeText) =>{
     
   const prompt = `
-You are an expert resume reviewer.
+You are an ATS (Applicant Tracking System) evaluator.
 
 Analyze the following resume and provide:
 
-1. Overall Score (0-100)
-2. Strengths
-3. Weaknesses
-4. Missing Sections
-5. Improvement Suggestions
+1. ATS Score (0–100)
+2. Strengths (bullet points)
+3. Weaknesses (bullet points)
+4. Missing Keywords
+5. Concrete Improvement Suggestions
+6. Section-wise Feedback (Education, Skills, Experience, Projects)
 
-Respond strictly in this JSON format:
+Return response strictly in JSON format:
 
 {
   "score": number,
   "strengths": [],
   "weaknesses": [],
-  "missingSections": [],
-  "improvements": []
+  "missing_keywords": [],
+  "improvements": [],
+  "section_feedback": {
+    "education": "",
+    "skills": "",
+    "experience": "",
+    "projects": ""
+  }
 }
 
 Resume:
@@ -32,10 +39,10 @@ const response = await model.invoke(prompt);
 const clean = response.content
   .replace(/```json|```/g, "")
   .trim();
-return JSON.parse(clean);
-// try {
-//     return JSON.parse(clean);
-//   } catch {
-//     throw new Error("Invalid AI JSON response");
-//   }
+
+try {
+    return JSON.parse(clean);
+  } catch {
+    throw new Error("Invalid AI JSON response");
+  }
 }

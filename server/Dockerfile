@@ -1,5 +1,5 @@
 # Use official Node image
-FROM node:18-bullseye
+FROM node:20
 
 # Install TeX Live (minimal but sufficient)
 RUN apt-get update && \

@@ -1,0 +1,499 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================
+   CSS Custom Properties (Design Tokens)
+   ============================================ */
+:root {
+  --bg-primary: #050A14;
+  --bg-secondary: #0C1628;
+  --bg-card: #0F1F3D;
+  --accent-cyan: #00D4FF;
+  --accent-blue: #0057FF;
+  --accent-purple: #7B2FFF;
+  --accent-glow: #00D4FF33;
+  --text-primary: #E8F4FF;
+  --text-secondary: #7A9ABF;
+  --text-muted: #3D5A7A;
+  --border: #1A3050;
+  --success: #00FFB3;
+  --warning: #FFB800;
+  --danger: #FF4C6A;
+}
+
+/* ============================================
+   Base Styles
+   ============================================ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ============================================
+   Scrollbar Styling
+   ============================================ */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-cyan);
+}
+
+/* ============================================
+   Mesh Gradient Background
+   ============================================ */
+.mesh-bg {
+  background:
+    radial-gradient(ellipse at 20% 50%, #0057FF22 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 20%, #7B2FFF22 0%, transparent 60%),
+    radial-gradient(ellipse at 50% 80%, #00D4FF11 0%, transparent 60%),
+    #050A14;
+}
+
+/* ============================================
+   Dot Grid Background Texture
+   ============================================ */
+.dot-grid {
+  background-image: radial-gradient(rgba(0, 212, 255, 0.15) 1px, transparent 1px);
+  background-size: 30px 30px;
+}
+
+/* ============================================
+   Glassmorphism Card
+   ============================================ */
+.glass-card {
+  background: rgba(15, 31, 61, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 212, 255, 0.1);
+  border-radius: 16px;
+}
+
+/* ============================================
+   Glow Effects
+   ============================================ */
+.glow-hover {
+  transition: all 0.3s ease;
+}
+
+.glow-hover:hover {
+  box-shadow:
+    0 0 20px rgba(0, 212, 255, 0.3),
+    0 0 60px rgba(0, 212, 255, 0.1);
+  border-color: rgba(0, 212, 255, 0.5);
+}
+
+.glow-blue:hover {
+  box-shadow:
+    0 0 20px rgba(0, 87, 255, 0.3),
+    0 0 60px rgba(0, 87, 255, 0.1);
+  border-color: rgba(0, 87, 255, 0.5);
+}
+
+.glow-purple:hover {
+  box-shadow:
+    0 0 20px rgba(123, 47, 255, 0.3),
+    0 0 60px rgba(123, 47, 255, 0.1);
+  border-color: rgba(123, 47, 255, 0.5);
+}
+
+.glow-green:hover {
+  box-shadow:
+    0 0 20px rgba(0, 255, 179, 0.3),
+    0 0 60px rgba(0, 255, 179, 0.1);
+  border-color: rgba(0, 255, 179, 0.5);
+}
+
+/* ============================================
+   Shimmer Effect
+   ============================================ */
+@keyframes shimmer {
+  0% {
+    background-position: -200% center;
+  }
+
+  100% {
+    background-position: 200% center;
+  }
+}
+
+.shimmer-text {
+  background: linear-gradient(90deg, #00D4FF, #fff, #00D4FF);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 3s linear infinite;
+}
+
+.shimmer-badge {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer-badge::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg,
+      transparent,
+      rgba(255, 255, 255, 0.12),
+      transparent);
+  animation: shimmer 2.5s ease-in-out infinite;
+}
+
+/* ============================================
+   Gradient Text
+   ============================================ */
+.gradient-text {
+  background: linear-gradient(135deg, #00D4FF 0%, #0057FF 50%, #7B2FFF 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-text-cyan {
+  background: linear-gradient(135deg, #00D4FF 0%, #0057FF 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ============================================
+   Button Effects
+   ============================================ */
+.btn-primary {
+  background: linear-gradient(135deg, #00D4FF 0%, #0057FF 100%);
+  color: #050A14;
+  font-weight: 600;
+  border: none;
+  border-radius: 12px;
+  padding: 12px 28px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  font-family: 'Outfit', sans-serif;
+}
+
+.btn-primary:hover {
+  transform: scale(1.04);
+  box-shadow: 0 0 30px rgba(0, 212, 255, 0.4);
+}
+
+.btn-primary:active {
+  transform: scale(0.97);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--text-primary);
+  font-weight: 500;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px 28px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  font-family: 'Outfit', sans-serif;
+}
+
+.btn-ghost:hover {
+  border-color: var(--accent-cyan);
+  color: var(--accent-cyan);
+  transform: scale(1.04);
+}
+
+.btn-ghost:active {
+  transform: scale(0.97);
+}
+
+/* ============================================
+   Input Glow
+   ============================================ */
+.input-glow {
+  transition: all 0.3s ease;
+  border-bottom: 2px solid var(--border);
+}
+
+.input-glow:focus {
+  border-bottom-color: var(--accent-cyan);
+  box-shadow: 0 2px 12px rgba(0, 212, 255, 0.2);
+  outline: none;
+}
+
+/* ============================================
+   Animate underline nav links
+   ============================================ */
+.nav-link {
+  position: relative;
+  text-decoration: none;
+  color: var(--text-secondary);
+  transition: color 0.3s ease;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--accent-cyan);
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover {
+  color: var(--text-primary);
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* ============================================
+   Score colors
+   ============================================ */
+.score-high {
+  color: var(--success);
+}
+
+.score-medium {
+  color: var(--warning);
+}
+
+.score-low {
+  color: var(--danger);
+}
+
+/* ============================================
+   Drag & Drop zone
+   ============================================ */
+.upload-zone {
+  border: 2px dashed var(--border);
+  border-radius: 16px;
+  padding: 48px;
+  text-align: center;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.upload-zone:hover,
+.upload-zone.drag-over {
+  border-color: var(--accent-cyan);
+  border-style: solid;
+  background: rgba(0, 212, 255, 0.05);
+}
+
+/* ============================================
+   Chat bubbles
+   ============================================ */
+.chat-user {
+  background: linear-gradient(135deg, #00D4FF 0%, #0057FF 100%);
+  color: #050A14;
+  border-radius: 16px 16px 4px 16px;
+}
+
+.chat-ai {
+  background: var(--bg-card);
+  border-left: 3px solid var(--accent-cyan);
+  border-radius: 4px 16px 16px 16px;
+}
+
+/* ============================================
+   Thinking dots animation
+   ============================================ */
+@keyframes thinkingDots {
+
+  0%,
+  20% {
+    opacity: 0.3;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  80%,
+  100% {
+    opacity: 0.3;
+  }
+}
+
+.thinking-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent-cyan);
+  margin: 0 2px;
+  animation: thinkingDots 1.4s infinite;
+}
+
+.thinking-dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.thinking-dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+/* ============================================
+   Animated mesh gradient (hero moving bg)
+   ============================================ */
+@keyframes meshMove {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.mesh-animated {
+  background:
+    radial-gradient(ellipse at 20% 50%, #0057FF33 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 20%, #7B2FFF33 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 80%, #00D4FF22 0%, transparent 50%),
+    #050A14;
+  background-size: 200% 200%;
+  animation: meshMove 15s ease infinite;
+}
+
+/* ============================================
+   Pulse (scroll indicator etc)
+   ============================================ */
+@keyframes pulse-soft {
+
+  0%,
+  100% {
+    opacity: 0.6;
+    transform: translateY(0);
+  }
+
+  50% {
+    opacity: 1;
+    transform: translateY(6px);
+  }
+}
+
+.pulse-indicator {
+  animation: pulse-soft 2s ease-in-out infinite;
+}
+
+/* ============================================
+   Active sidebar indicator
+   ============================================ */
+.sidebar-item-active {
+  border-left: 3px solid var(--accent-cyan);
+  background: rgba(0, 212, 255, 0.08);
+  color: var(--accent-cyan);
+}
+
+/* ============================================
+   Responsive utilities
+   ============================================ */
+@media (max-width: 768px) {
+  .hide-mobile {
+    display: none !important;
+  }
+}
+
+/* ============================================
+   Hero Typography Enhancements
+   ============================================ */
+
+/* Glowing text for hero words */
+.hero-glow-white {
+  text-shadow:
+    0 0 20px rgba(232, 244, 255, 0.15),
+    0 0 60px rgba(232, 244, 255, 0.05);
+}
+
+.hero-glow-cyan {
+  text-shadow:
+    0 0 30px rgba(0, 212, 255, 0.3),
+    0 0 80px rgba(0, 212, 255, 0.1);
+}
+
+/* Animated gradient text with glow */
+.hero-gradient-glow {
+  background: linear-gradient(135deg, #00D4FF 0%, #0057FF 40%, #7B2FFF 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 0 25px rgba(0, 212, 255, 0.25));
+}
+
+/* Animated underline for hero subtitle */
+.hero-underline {
+  position: relative;
+}
+
+.hero-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, #00D4FF, #7B2FFF, transparent);
+  border-radius: 2px;
+  animation: underlineGlow 3s ease-in-out infinite;
+}
+
+@keyframes underlineGlow {
+
+  0%,
+  100% {
+    opacity: 0.5;
+    width: 60%;
+  }
+
+  50% {
+    opacity: 1;
+    width: 100%;
+  }
+}
+
+/* Badge glow ring */
+.badge-glow {
+  box-shadow:
+    0 0 0 1px rgba(123, 47, 255, 0.2),
+    0 0 15px rgba(123, 47, 255, 0.15);
+}
+
+/* Hero section particle glow */
+.particle-glow {
+  box-shadow: 0 0 6px 2px rgba(0, 212, 255, 0.4);
+}
